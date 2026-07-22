@@ -13,6 +13,7 @@ Supported scenarios right now: **food** and **jewelry**. That focus is deliberat
 
 - A local image path (required). If the user gave none, ask for one — that's the only question you should need.
 - Optional free-form wishes ("warmer", "white background", "for Instagram"). Fold them into the composed prompt.
+- **Finish mode** — `showcase` (default): the product itself is presented at its best (appetizing food, flawless showroom jewelry) while staying the same product. `truthful`: condition shown exactly as shot — use only when the user indicates an honest as-is listing (e.g. second-hand sale). Each template has a truthful-mode note.
 
 ## Workflow
 
@@ -36,7 +37,7 @@ Supported scenarios right now: **food** and **jewelry**. That focus is deliberat
 
 ## Hard rules
 
-- **Never alter what's being sold.** Same dish and portion; same stones, metal tone, engravings and visible wear. Lighting, background, color, clarity only. If the user asks you to change the subject itself, flag that it stops being a truthful listing photo and confirm before doing it.
+- **Never change what's being sold — its identity.** Same dish, components and portion; same jewelry design, stone count/cut/color character, metal color, hallmarks. Showcase mode beautifies condition and presentation (fresher, crisper, polished, brilliant); it never turns the subject into a different one. If the user asks for an identity change (bigger stone, different color, added ingredients), point out it would misrepresent the product and confirm before doing it.
 - Blur or remove any faces or personal info visible in the background or reflections by default.
 - Keep the original aspect ratio unless the user asks otherwise.
 - One model call per pass — don't fan out across models racking up API cost without being asked.
