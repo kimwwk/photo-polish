@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "kie": {
+      "command": "npx",
+      "args": ["-y", "@felores/kie-ai-mcp-server"],
+      "env": {
+        "KIE_AI_API_KEY": "${KIE_AI_API_KEY}",
+        "KIE_AI_ENABLED_TOOLS": "nano_banana_image,flux_kontext,flux_2,gpt_image_2,topaz"
+      }
+    }
+  }
+}
