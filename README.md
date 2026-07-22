@@ -47,7 +47,7 @@ output/…-polished.png ◄── downloads result ◄── Kie.ai model ◄─
 4. **Edit** — the skill calls the Kie.ai MCP server (`nano_banana_image` first, Flux as fallback) with the image URL + composed prompt.
 5. **Deliver** — result is downloaded to `output/`, shown next to the original.
 
-**Fidelity rule baked into every template:** the subject keeps its identity — same dish and portion, same jewelry design, stones and metal tone. By default (**showcase** mode) the product is presented at its best: appetizing, freshly plated, showroom-polished. Say the photo must show the item as-is (e.g. a second-hand listing) and the skill switches to **truthful** mode, which preserves condition exactly.
+**Fidelity rule baked into every template:** the subject keeps its identity — same dish and portion, same jewelry design, stones and metal tone. Everything around it is presentation, and the default (**showcase** mode) restyles it like a pro shoot: takeout food gets replated onto real dinnerware at a hero angle in a restaurant scene; jewelry gets showroom polish on a studio background. Say the photo must show the item as-is (e.g. a second-hand listing, or "keep the box") and the skill switches to **truthful** mode, which preserves packaging, angle and condition exactly.
 
 ## Repo layout
 

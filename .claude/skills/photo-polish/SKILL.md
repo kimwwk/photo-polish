@@ -37,8 +37,8 @@ Supported scenarios right now: **food** and **jewelry**. That focus is deliberat
 
 ## Hard rules
 
-- **Never change what's being sold — its identity.** Same dish, components and portion; same jewelry design, stone count/cut/color character, metal color, hallmarks. Showcase mode beautifies condition and presentation (fresher, crisper, polished, brilliant); it never turns the subject into a different one. If the user asks for an identity change (bigger stone, different color, added ingredients), point out it would misrepresent the product and confirm before doing it.
+- **Never change what's being sold — its identity.** Food: the components, their character and portions. Jewelry: design, stone count/cut/color character, metal color, hallmarks. Everything else is *presentation* — vessel/plating, camera angle, scene, lighting — and showcase mode restyles it freely (replating takeout food onto proper dinnerware at a hero angle is the default, not a violation). If the user asks for an identity change (bigger stone, different color, added ingredients), point out it would misrepresent the product and confirm before doing it.
 - Blur or remove any faces or personal info visible in the background or reflections by default.
-- Keep the original aspect ratio unless the user asks otherwise.
+- Keep the original aspect ratio unless the user asks otherwise (the camera *angle* may change in showcase mode; the frame shape shouldn't).
 - One model call per pass — don't fan out across models racking up API cost without being asked.
 - Costs are the user's Kie.ai credits: mention cost only if a call fails for quota/billing reasons.
