@@ -11,7 +11,13 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-: "${KIE_AI_API_KEY:?KIE_AI_API_KEY is not set — export it first (see README)}"
+if [ -z "${KIE_AI_API_KEY:-}" ]; then
+  ENV_FILE="$(cd "$(dirname "$0")/.." && pwd)/.env"
+  if [ -f "$ENV_FILE" ]; then
+    set -a; . "$ENV_FILE"; set +a
+  fi
+fi
+: "${KIE_AI_API_KEY:?KIE_AI_API_KEY is not set — put it in .env at the repo root (see README)}"
 
 FILE="$1"
 if [ ! -f "$FILE" ]; then

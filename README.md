@@ -16,12 +16,12 @@ Requirements: [Claude Code](https://claude.com/claude-code), Node.js 18+, `curl`
 git clone https://github.com/kimwwk/photo-polish.git
 cd photo-polish
 
-export KIE_AI_API_KEY=your-key-here   # get one at https://kie.ai/api-key
+cp .env.example .env   # then paste your key inside (get one at https://kie.ai/api-key)
 
 claude
 ```
 
-On first launch Claude Code will ask to approve the `kie` MCP server defined in [`.mcp.json`](.mcp.json) — approve it. Then:
+The MCP server and the upload script auto-load `.env` (an exported `KIE_AI_API_KEY` env var also works and takes precedence). `.env` is gitignored — the key never leaves your machine. On first launch Claude Code will ask to approve the `kie` MCP server defined in [`.mcp.json`](.mcp.json) — approve it. Then:
 
 ```
 /photo-polish path/to/your-photo.jpg
@@ -29,7 +29,6 @@ On first launch Claude Code will ask to approve the `kie` MCP server defined in 
 
 That's it. The polished image lands in `output/`, and Claude shows you a before/after. Tell it what you'd change ("warmer", "cleaner background", "less dramatic") and it makes one refinement pass — still no prompt writing on your side.
 
-> Tip: to avoid exporting the key every session, add the `export` line to your `~/.bashrc` / `~/.zshrc`.
 
 ## How it works
 
@@ -67,7 +66,7 @@ output/…-polished.png ◄── downloads result ◄── Kie.ai model ◄─
 
 ## Troubleshooting
 
-- **"KIE_AI_API_KEY not set"** — export it in the same shell where you run `claude`, then restart `claude`.
+- **"KIE_AI_API_KEY not set"** — make sure `.env` exists at the repo root and contains `KIE_AI_API_KEY=...` (start from `.env.example`), then restart `claude`.
 - **kie tools not showing** — check the MCP server was approved: run `/mcp` inside Claude Code.
 - **Upload URL expired** — Kie.ai temp files live ~3 days; just run the skill again, it re-uploads.
 - **Cost** — each edit is a metered Kie.ai API call (typically a few cents per image). Nano Banana is the cheap default; the skill won't fan out to multiple models without asking.

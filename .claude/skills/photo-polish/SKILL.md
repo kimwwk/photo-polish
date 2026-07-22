@@ -17,7 +17,7 @@ Supported scenarios right now: **food** and **jewelry**. That focus is deliberat
 
 ## Workflow
 
-1. **Check the key.** Run `test -n "$KIE_AI_API_KEY" && echo set || echo missing`. If missing, stop and tell the user to `export KIE_AI_API_KEY=...` (from https://kie.ai/api-key) and restart Claude Code. Don't continue without it.
+1. **Check the key.** Run `test -n "$KIE_AI_API_KEY" -o -f .env && echo ok || echo missing` from the repo root — the key can come from the environment or from a `.env` file (the MCP server and upload script auto-load `.env`). If missing, stop and tell the user to `cp .env.example .env` and paste their key (from https://kie.ai/api-key) inside, then restart Claude Code. Don't continue without it. Never print, echo or commit the key.
 
 2. **Look at the photo.** Read the image file so you actually see it. Classify:
    - `food` — dishes, drinks, baked goods
