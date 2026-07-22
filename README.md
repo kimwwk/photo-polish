@@ -2,7 +2,9 @@
 
 Turn an ordinary phone photo into a gallery-ready shot — **without writing a single prompt**.
 
-You drop a photo in, the built-in Claude Code skill figures out what it's looking at (food / product / vehicle / anything else), composes a battle-tested editing prompt from the templates in [`prompts/`](prompts/), sends it to an image model on [Kie.ai](https://kie.ai), and hands you back a polished version next to the original.
+You drop a photo in, the built-in Claude Code skill figures out what it's looking at, composes a battle-tested editing prompt from the templates in [`prompts/`](prompts/), sends it to an image model on [Kie.ai](https://kie.ai), and hands you back a polished version next to the original.
+
+**Supported scenarios right now: food and jewelry.** That focus is deliberate — two scenarios done well beats six done vaguely.
 
 The only thing you need to bring is a **Kie.ai API key**.
 
@@ -39,13 +41,13 @@ output/…-polished.png ◄── downloads result ◄── Kie.ai model ◄─
                                                  flux fallback)
 ```
 
-1. **Look** — Claude reads the image itself and classifies it: `food`, `product`, `vehicle`, or `general`.
+1. **Look** — Claude reads the image itself and classifies it: `food` or `jewelry` (anything else is politely declined for now).
 2. **Compose** — the matching template in `prompts/` is filled with what Claude actually sees. The templates encode the photography know-how (lighting, background, fidelity constraints) so you don't have to.
 3. **Upload** — `scripts/kie_upload.sh` pushes the local file to Kie.ai's temporary file storage (auto-deleted after ~3 days) and returns a URL.
 4. **Edit** — the skill calls the Kie.ai MCP server (`nano_banana_image` first, Flux as fallback) with the image URL + composed prompt.
 5. **Deliver** — result is downloaded to `output/`, shown next to the original.
 
-**Fidelity rule baked into every template:** the subject is never altered — same dish, same product condition, same car. Only lighting, background, color and clarity change. What you're selling stays what it is.
+**Fidelity rule baked into every template:** the subject is never altered — same dish and portion, same stones and metal tone, same visible condition. Only lighting, background, color and clarity change. What you're selling stays what it is.
 
 ## Repo layout
 
@@ -60,7 +62,7 @@ output/…-polished.png ◄── downloads result ◄── Kie.ai model ◄─
 ## Customizing
 
 - **Change the look**: edit the template in `prompts/` for your scenario. Each file is plain markdown — a base prompt plus slot notes.
-- **Add a scenario**: copy `prompts/general.md` to `prompts/<name>.md`, describe when it applies in the header line, and the skill will pick it up.
+- **Add a scenario**: copy `prompts/food.md` to `prompts/<name>.md`, adapt the template, describe when it applies in the header line, and update the classification list in `.claude/skills/photo-polish/SKILL.md`.
 - **Different models**: the MCP server exposes more Kie.ai models than the ones enabled in `.mcp.json` (`KIE_AI_ENABLED_TOOLS`). Remove that env line to see everything.
 
 ## Troubleshooting
