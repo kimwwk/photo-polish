@@ -28,7 +28,7 @@ Supported scenarios right now: **food** and **jewelry**. That focus is deliberat
 
 4. **Upload the photo.** Run `bash scripts/kie_upload.sh <path>`. Parse the JSON for `fileUrl` (or `downloadUrl`). If the upload fails, show the error and stop.
 
-5. **Edit via Kie.** Call the `kie` MCP server's `nano_banana_image` tool in edit mode: pass the uploaded image URL and your composed prompt. Read the tool's schema for exact parameter names before calling — don't guess. If the task is async, poll with `get_task_status` / `wait_for_task`. If nano banana errors or is unavailable, retry once on the Flux editing tool (`flux_kontext` or `flux_2`), same prompt.
+5. **Edit via Kie.** Call the `kie` MCP server's `nano_banana_image` tool in edit mode: pass the uploaded image URL and your composed prompt. Read the tool's schema for exact parameter names before calling — don't guess. Set the aspect-ratio parameter explicitly to match the input — "auto" has been seen drifting a 4:3 input to a 1:1 output. If the task is async, poll with `get_task_status` / `wait_for_task`. If nano banana errors or is unavailable, retry once on the Flux editing tool (`flux_kontext` or `flux_2`), same prompt.
 
 6. **Deliver.** Download the result to `output/<original-stem>-polished.png` (curl the result URL). Show the user the original and the polished version side by side (read both images). One or two sentences on what you changed — no prompt dumps.
 
